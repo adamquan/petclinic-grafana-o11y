@@ -1,0 +1,27 @@
+steps:
+    # Run the Maven build using the official Maven Cloud builder
+#  - name: maven:3.6.0-jdk-11-slim
+  - name: 'maven'
+    entrypoint: 'mvn'
+    args: ['clean', 'install', '-DskipTests']
+    
+    # Build a docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/pet-clinic', '--cache-from', 'gcr.io/$PROJECT_ID/pet-clinic', '.' ]
+
+    # Push the docker image to container registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ["push", "gcr.io/$PROJECT_ID/pet-clinic"]
+    
+    # Deploy an image from Container Registry to Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['beta', 'run', 'deploy', 'pet-clinic', '--image', 'gcr.io/$PROJECT_ID/pet-clinic:latest', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
+    
+  - name: 'gcr.io/$PROJECT_ID/docker-compose'
+    env:
+      - 'K6_CLOUD_TOKEN=c448b2bef030aa7a5327423f7928501a21432497055c881883e2fd100cf30a39'
+    args:
+      - run
+      - k6
+images:
+ - 'gcr.io/$PROJECT_ID/pet-clinic'

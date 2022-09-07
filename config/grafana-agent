@@ -1,0 +1,16 @@
+## Path:
+## Description: Grafana Agent monitoring agent settings
+## Type:        string
+## Default:     ""
+## ServiceRestart: grafana-agent
+#
+# Command line options for grafana-agent
+#
+# The configuration file holding the agent config
+CONFIG_FILE="/etc/agent-config/agent.yaml"
+
+# Any user defined arguments
+CUSTOM_ARGS="-enable-features=integrations-next -config.expand-env"
+
+# Restart on system upgrade. Default to true
+RESTART_ON_UPGRADE=true

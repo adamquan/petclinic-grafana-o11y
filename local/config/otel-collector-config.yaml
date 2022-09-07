@@ -1,0 +1,28 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: "0.0.0.0:4318"
+        cors:
+          allowed_origins: 
+            - http://localhost:8080
+          allowed_headers: ["*"]
+
+processors:
+  batch:
+
+exporters:
+  otlp:
+#    endpoint: tempo-us-central1.grafana.net:443
+#    headers: 
+#      authorization: Basic MTYwNjM5OmV5SnJJam9pWWprek1EQTFOREUwT0RSaFlXUmpZemd3TmpnMFlUSmxOemN5Wm1ZME1UaG1NRE5pT1RSak1pSXNJbTRpT2lKMFpYTjBJaXdpYVdRaU9qWXdNVE00TUgwPQ==
+    endpoint: tempo:4317
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp]

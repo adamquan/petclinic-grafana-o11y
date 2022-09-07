@@ -1,0 +1,45 @@
+version: "3"
+services:
+
+  # The hello-observability application
+  hello-observability:
+    image: hello-observability
+    volumes:
+      - ./logs/hello-observability.log:/tmp/hello-observability.log
+      - ./logs/access_log.log:/tmp/access_log.log
+    environment:
+      JAVA_TOOL_OPTIONS: -javaagent:./opentelemetry-javaagent.jar
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://agent:4317
+      OTEL_SERVICE_NAME: hello-observability
+      OTEL_TRACES_EXPORTER: otlp
+    ports:
+      - "8080:8080"
+
+  # Our load generator
+  load-generator:
+    image: curlimages/curl:latest
+    volumes:
+      - ../hello-observability/load-generator.sh:/tmp/load-generator.sh
+    command: /bin/sh -c "/tmp/load-generator.sh"
+  
+  agent:
+    image: grafana/agent:v0.25.1
+    volumes:
+      - ./config/agent.yaml:/etc/agent-config/agent.yaml
+      - ./logs/hello-observability.log:/tmp/hello-observability.log
+      - ./logs/access_log.log:/tmp/access_log.log
+      # - /:/host/root:ro,rslave
+      # - /sys:/host/sys:ro,rslave
+      # - /proc:/host/proc:ro,rslave
+      - /tmp/agent:/etc/agent
+    entrypoint:
+      - /bin/agent
+      - -config.file=/etc/agent-config/agent.yaml
+      - -metrics.wal-directory=/tmp/agent/wal
+      - -enable-features=integrations-next
+      - -config.expand-env
+      - -config.enable-read-api
+    environment:
+      HOSTNAME: agent
+    ports:
+      - "4317:4317"

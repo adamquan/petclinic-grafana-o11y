@@ -1,0 +1,9 @@
+version: '3.4'
+services:
+  k6:
+    image: loadimpact/k6:latest
+    command: cloud /scripts/test.js
+    volumes:
+      - ./scripts:/scripts
+    environment:
+      - K6_CLOUD_TOKEN=${K6_CLOUD_TOKEN}

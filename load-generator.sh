@@ -1,0 +1,31 @@
+while true; 
+    do 
+        curl http://spring-petclinic:8080/;
+        sleep 1s; 
+        curl http://spring-petclinic:8080/owners/find;
+        sleep 1s; 
+        curl http://spring-petclinic:8080/owners?lastName=;
+        sleep 1s;
+        curl http://spring-petclinic:8080/owners/1
+        sleep 1s;
+        curl http://spring-petclinic:8080/owners/2
+        sleep 1s;
+        curl http://spring-petclinic:8080/owners/3
+        sleep 1s;
+        curl http://spring-petclinic:8080/owners/4
+        sleep 1s;
+        curl http://spring-petclinic:8080/owners/5
+        sleep 1s;
+        curl http://spring-petclinic:8080/owners/8/edit
+        sleep 1s;
+        curl http://spring-petclinic:8080/owners/8/pets/new
+        sleep 1s;
+        curl http://spring-petclinic:8080/owners/5/pets/6/visits/new
+        sleep 1s;
+        curl http://spring-petclinic:8080/vets.html
+        sleep 1s;
+        curl http://spring-petclinic:8080/oups
+        sleep 1s;
+        curl http://spring-petclinic:8080/owners/new
+        sleep 10s; 
+    done
