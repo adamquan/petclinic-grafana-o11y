@@ -74,3 +74,9 @@ Import the dashboard from the `dashboard.json` file,
 Similary as you have done locally, import the dashboard and enjoy!
 
 Here is a live version of the [dashboard](https://se-demo.grafana.net/d/UjJzQ1L7k/hello-observability?orgId=1)
+
+## Spring Boot metrics exemplar
+
+Exemplar was added by following this [blog](https://k8staz.com/setting-up-open-source-observability-stack-on-kubernetes-from-scratch)
+
+<img alt="Exemplar" src="./images/exemplar.png" width="500">
