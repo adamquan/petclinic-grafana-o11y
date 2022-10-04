@@ -1,0 +1,1678 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_TEMPO",
+      "label": "Tempo",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "tempo",
+      "pluginName": "Tempo"
+    },
+    {
+      "name": "DS_TEMPOPROMETHEUS",
+      "label": "TempoPrometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    },
+    {
+      "name": "DS_LOKI",
+      "label": "Loki",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "loki",
+      "pluginName": "Loki"
+    },
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "9.1.0"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph (old)",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "logs",
+      "name": "Logs",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "loki",
+      "name": "Loki",
+      "version": "1.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "state-timeline",
+      "name": "State timeline",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "tempo",
+      "name": "Tempo",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 44,
+      "panels": [],
+      "title": "Application Overview",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "tempo",
+        "uid": "Tempo"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 0,
+        "y": 1
+      },
+      "id": 26,
+      "options": {
+        "content": "Dashboard for a simple [Spring Boot](https://spring.io/guides/gs/spring-boot) application, [Hello Observability](https://github.com/adamquan/hello-observability), to demonstrate observability by collecting and correlating logs, metrics and traces with:\n- [Prometheus](https://prometheus.io/)\n- [OpenTelemetry](https://opentelemetry.io/)\n- [Grafana Agent](https://grafana.com/docs/grafana-cloud/agent/)\n- [Grafana Cloud](https://grafana.com/products/cloud/)\n \n<img alt=\"architecture\" src=\"https://github.com/adamquan/hello-observability/raw/main/images/architecture.png\" width=\"1000\">",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "tempo",
+            "uid": "Tempo"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Pet Clinic",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "TempoPrometheus"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "thresholds"
+          },
+          "custom": {
+            "fillOpacity": 90,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "Down"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "Up"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_yes_no"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 8,
+        "y": 1
+      },
+      "id": 10,
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "mergeValues": true,
+        "rowHeight": 0.5,
+        "showValue": "never",
+        "tooltip": {
+          "mode": "none",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "TempoPrometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "up{job=\"pet-clinic\"}",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{job}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Service Up/Down",
+      "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "Loki"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              },
+              {
+                "color": "light-blue",
+                "value": 20
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 3,
+        "x": 12,
+        "y": 1
+      },
+      "id": 22,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "Loki"
+          },
+          "editorMode": "code",
+          "expr": "sum by (status) (count_over_time({job=\"tomcat-log\"} | pattern `<_> - - <_> \"<method> <path> <_>\" <status> <size>` != `/actuator/prometheus` != `.png` != `.html` != `/metrics` != `.js` != `.css` != `.woff` [$__interval]))",
+          "legendFormat": "{{status}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Requests by status code",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "Loki"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": 600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "500"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 9,
+        "x": 15,
+        "y": 1
+      },
+      "id": 28,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "Loki"
+          },
+          "editorMode": "builder",
+          "expr": "sum by(status) (count_over_time({job=\"tomcat-log\"} != `/actuator/prometheus` != `/metrics` | pattern `<_> - - <_> \"<method> <path> <_>\" <status> <size>` [1m]))",
+          "legendFormat": "{{status}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "HTTP status codes over time, per minute",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "Loki"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 8,
+        "y": 4
+      },
+      "hideTimeOverride": false,
+      "id": 19,
+      "maxDataPoints": 1000,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "Loki"
+          },
+          "editorMode": "code",
+          "expr": "sum (count_over_time({job=\"tomcat-log\"} != `/actuator/prometheus` != `.png` != `.html` != `/metrics` != `.js` != `.css` != `.woff` !=`actuator` | pattern `<_> - - <_> \"<method> <path> <_>\" <status> <size>` [$__interval]))",
+          "hide": false,
+          "legendFormat": "{{path}}",
+          "queryType": "range",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": "24h",
+      "title": "Total Requests",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "Loki"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 7
+      },
+      "hideTimeOverride": false,
+      "id": 20,
+      "maxDataPoints": 200,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
+      },
+      "pluginVersion": "9.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "Loki"
+          },
+          "editorMode": "builder",
+          "expr": "sum by(job) (count_over_time({job=\"tomcat-log\"} != `/actuator/prometheus` != `/metrics` | pattern `<_> - - <_> \"<method> <path> <_>\" <status> <size>` [$__interval]))",
+          "legendFormat": "",
+          "queryType": "range",
+          "refId": "A",
+          "resolution": 1
+        }
+      ],
+      "timeFrom": "5m",
+      "title": "Visitors",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "id": 42,
+      "panels": [],
+      "title": "Spring Boot Prometheus Metrics",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "hiddenSeries": false,
+      "id": 38,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "9.1.0",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "Prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "irate(http_server_requests_seconds_count{uri!~\".*actuator.*\"}[$__rate_interval]) * 60",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{uri}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "Request per Minute by URI",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "logBase": 1,
+          "show": true
+        },
+        {
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "hiddenSeries": false,
+      "id": 40,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "9.1.0",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "Prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "irate(http_server_requests_seconds_sum{exception=\"None\", uri!~\".*actuator.*\"}[$__rate_interval]) / irate(http_server_requests_seconds_count{exception=\"None\", uri!~\".*actuator.*\"}[$__rate_interval])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{uri}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "Response Time",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": "",
+          "logBase": 1,
+          "show": true
+        },
+        {
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 4,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "id": 56,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "Prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "histogram_quantile(0.95, rate(http_server_requests_seconds_bucket[1m]))",
+          "legendFormat": "{{uri}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "95th Percentile Response Latencies",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 35
+      },
+      "id": 46,
+      "panels": [],
+      "title": "Span Metrics",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "TempoPrometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 5
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 0,
+        "y": 36
+      },
+      "id": 52,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "TempoPrometheus"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sum(increase(traces_spanmetrics_calls_total{status_code=\"STATUS_CODE_ERROR\"}[10m]))/sum(increase(traces_spanmetrics_calls_total{}[10m]))) * 100",
+          "interval": "",
+          "legendFormat": "",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Overall Error %age",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "TempoPrometheus"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 57,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 7,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 9,
+        "x": 4,
+        "y": 36
+      },
+      "id": 48,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "TempoPrometheus"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum by (http_target)(increase(traces_spanmetrics_calls_total{service=\"pet-clinic\", http_target!~\".*js\", http_target!~\".*css\", http_target!~\".*png\", http_target!~\".*html\", http_target!~\".*woff.*\", http_target!~\"/actuator/prometheus\"}[1m]))",
+          "interval": "",
+          "legendFormat": "{{http_target}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Request Rate per Minute",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "TempoPrometheus"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "filterable": false,
+            "inspect": false
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "${__data.fields[\"HTTP Method\"]} ${__data.fields.Endpoint} traces",
+              "url": "/explore?orgId=1&left={\"datasource\":\"GET (Critical Applications)\",\"queries\":[{\"refId\":\"A\",\"queryType\":\"nativeSearch\",\"search\":\"http.method=${__data.fields[\"HTTP Method\"]}%20http.target=${__data.fields.Endpoint}\",\"minDuration\":\"50ms\"}],\"range\":{\"from\":\"now-1h\",\"to\":\"now\"}}"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 65
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #A"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "lcd-gauge"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Endpoint"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 285
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 11,
+        "x": 13,
+        "y": 36
+      },
+      "id": 32,
+      "links": [],
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 0,
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "9.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "TempoPrometheus"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "topk(10, sum by (http_method,http_target)(increase(traces_spanmetrics_latency_sum{http_method=~\".+\"}[1m]) / increase(traces_spanmetrics_latency_count{http_method=~\".+\"}[1m])))*1000",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Top Highest Endpoint Latencies Over Last Minute",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "http_method",
+                "http_target",
+                "Value"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Value": false
+            },
+            "indexByName": {},
+            "renameByName": {
+              "Value": "Latency (ms)",
+              "Value #A": "Average Latency",
+              "http_method": "HTTP Method",
+              "http_target": "Endpoint"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "TempoPrometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Error traces for ${__field.labels.http_target}",
+              "url": "/explore?orgId=1&left={\"datasource\":\"GET (Critical Applications)\",\"queries\":[{\"refId\":\"A\",\"queryType\":\"nativeSearch\",\"search\":\"http.target=${__field.labels.http_target} status.code=2\"}],\"range\":{\"from\":\"now-1h\",\"to\":\"now\"}}"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 4
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 0,
+        "y": 41
+      },
+      "id": 54,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "TempoPrometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum by (http_target)(increase(traces_spanmetrics_calls_total{status_code=\"STATUS_CODE_ERROR\"}[10m])))/(sum by (http_target)(increase(traces_spanmetrics_calls_total{status_code!=\"\"}[10m]))) * 100",
+          "interval": "",
+          "legendFormat": "{{http_target}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Error Percentages by Target",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "TempoPrometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 35,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 13,
+        "x": 0,
+        "y": 48
+      },
+      "id": 36,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "TempoPrometheus"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "histogram_quantile(0.95, sum by(http_target, le) (rate(traces_spanmetrics_latency_bucket{service=\"pet-clinic\", http_target!~\".*js\", http_target!~\".*css\", http_target!~\".*png\", http_target!~\".*html\", http_target!~\".*woff.*\", http_target!~\"/actuator/prometheus\"}[15s])))",
+          "interval": "",
+          "legendFormat": "{{http_target}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "95th Percentile Response Latencies (ms)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "TempoPrometheus"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 23,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 7,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 11,
+        "x": 13,
+        "y": 48
+      },
+      "id": 34,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "TempoPrometheus"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum by (http_method,http_target)(increase(traces_spanmetrics_latency_sum{http_method=~\".+\", service=\"pet-clinic\", http_target!~\".*js\", http_target!~\".*css\", http_target!~\".*png\", http_target!~\".*html\", http_target!~\".*woff.*\", http_target!~\"/actuator/prometheus\"}[10m]) / increase(traces_spanmetrics_latency_count{http_method=~\".+\"}[10m]))*1000",
+          "interval": "",
+          "legendFormat": "{{http_method}} - {{http_target}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "All Endpoint Latencies in ms (Last 10 mins)",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 59
+      },
+      "id": 50,
+      "panels": [],
+      "title": "Logs & metrics from logs",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "Loki"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue"
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 60
+      },
+      "hideTimeOverride": false,
+      "id": 24,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "Loki"
+          },
+          "editorMode": "code",
+          "expr": "topk(10, sum by(path) (sum_over_time({job=\"tomcat-log\"} != `/actuator/prometheus` != `.png` != `.html` != `/metrics` != `.js` != `.css` != `.woff` | pattern `<_> - - <_> \"<method> <path> <_>\" <status> <size>` | unwrap size | __error__=\"\" [5m])))",
+          "legendFormat": "{{path}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "5m",
+      "title": "Total Bytes Sent",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "Loki"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Bytes",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 41,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 60
+      },
+      "id": 17,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "Loki"
+          },
+          "editorMode": "code",
+          "expr": "quantile_over_time (0.90, {job=\"tomcat-log\"} != `/actuator/prometheus` != `.png` != `.html` != `/metrics` != `.js` != `.css` != `.woff`!= `h2-console` | pattern `<_> - - <_> \"<method> <path> <_>\" <status> <size>` != \"/metrics\"  != \"/actuator/prometheus\" | unwrap size | __error__!=\"SampleExtractionErr\" [1m] ) by (path)",
+          "legendFormat": "{{path}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "90% Percentile Response Size",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "Loki"
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 69
+      },
+      "id": 4,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "Loki"
+          },
+          "editorMode": "code",
+          "expr": "{job=\"pet-clinic\"} != `/actuator/prometheus` != `/metrics`",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Logs",
+      "type": "logs"
+    }
+  ],
+  "schemaVersion": 37,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Pet Clinic",
+  "uid": "tv2w2f4Vz",
+  "version": 3,
+  "weekStart": ""
+}
