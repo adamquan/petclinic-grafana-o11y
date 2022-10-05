@@ -11,14 +11,13 @@ Simple [Spring Boot](https://spring.io/guides/gs/spring-boot) application to dem
 
 You can run the whole stack locally inside Docker, after building the application container. The whole stack contains:
 
-- The Hello Observability application
+- The Pet Clinic application
 - The simple load runner
 - Prometheus for metrics
 - Loki for logs
 - Tempo for traces
 - Grafana Agent to collect logs, metrics and traces
 - Grafana
-- OTEL collector for browser traces
 
 ```
 git clone adamquan/petclinic-grafana-o11y
