@@ -11,14 +11,13 @@ Simple [Spring Boot](https://spring.io/guides/gs/spring-boot) application to dem
 
 You can run the whole stack locally inside Docker, after building the application container. The whole stack contains:
 
-- The Hello Observability application
+- The Pet Clinic application
 - The simple load runner
 - Prometheus for metrics
 - Loki for logs
 - Tempo for traces
 - Grafana Agent to collect logs, metrics and traces
 - Grafana
-- OTEL collector for browser traces
 
 ```
 git clone adamquan/petclinic-grafana-o11y
@@ -74,3 +73,9 @@ Import the dashboard from the `dashboard.json` file,
 Similary as you have done locally, import the dashboard and enjoy!
 
 Here is a live version of the [dashboard](https://se-demo.grafana.net/d/UjJzQ1L7k/hello-observability?orgId=1)
+
+## Spring Boot metrics exemplar
+
+Exemplar was added by following this [blog](https://k8staz.com/setting-up-open-source-observability-stack-on-kubernetes-from-scratch)
+
+<img alt="Exemplar" src="./images/exemplar.png" width="500">
